@@ -1,7 +1,6 @@
 package com.chewychiyu.paint;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -15,15 +14,13 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class PaintPanel extends JPanel{
 	
-	private Dimension dim;
 	private ToolBar tool_bar;
 	
 	private List<Stroke> strokes = new ArrayList<Stroke>();
 	
 	
-	public PaintPanel(Dimension dim, ToolBar tool_bar){
+	public PaintPanel(ToolBar tool_bar){
 		this.tool_bar = tool_bar;
-		this.dim = dim;
 		panel();
 		brush();
 	}
@@ -57,7 +54,7 @@ public class PaintPanel extends JPanel{
 	
 	
 	public void panel(){
-		setPreferredSize(dim);
+		setPreferredSize(Style.paint_panel_dim);
 		setBackground(Color.WHITE);
 	}
 	

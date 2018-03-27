@@ -1,7 +1,5 @@
 package com.chewychiyu.paint;
 
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
@@ -9,15 +7,13 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class ColorBar extends JPanel{
 	
-	private Dimension dim;
 	
-	public ColorBar(Dimension dim){
-		this.dim = dim;
-		panel(dim);
+	public ColorBar(){
+		panel();
 	}
 	
-	public void panel(Dimension dim){
-		setPreferredSize(dim);
+	public void panel(){
+		setPreferredSize(Style.color_bar_dim);
 		setBorder(Style.bevel_line_border);
 	}
 	
