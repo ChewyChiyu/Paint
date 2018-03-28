@@ -95,13 +95,20 @@ public class PaintPanel extends JPanel{
 	@Override
 	public void paintComponent(Graphics g){
 		Graphics2D g2d = (Graphics2D) g;
-		canvas_graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		render(g2d);
+		render(canvas_graphics);
 		stroke(canvas_graphics);
 		canvas(g2d);
 		cursor(g2d);
 	}
 
+	public void render(Graphics2D g2d){
+		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		g2d.setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION, RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
+		g2d.setRenderingHint(RenderingHints.KEY_COLOR_RENDERING, RenderingHints.VALUE_COLOR_RENDER_QUALITY);
+	    g2d.setRenderingHint(RenderingHints.KEY_DITHERING, RenderingHints.VALUE_DITHER_ENABLE);
+	}
+	
 	public void canvas(Graphics2D g2d){
 		g2d.drawImage(canvas,0,0,canvas.getWidth(),canvas.getHeight(),this);
 	}
