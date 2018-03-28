@@ -7,8 +7,6 @@ import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JPanel;
 @SuppressWarnings("serial")
@@ -31,9 +29,6 @@ public class PaintPanel extends JPanel{
 
 	public void brush(){	
 		MouseAdapter mouse_adapter = new MouseAdapter(){
-
-
-
 			@Override
 			public void mousePressed(MouseEvent e) {
 				switch(tool_bar.current_tool){
@@ -101,6 +96,7 @@ public class PaintPanel extends JPanel{
 	public void paintComponent(Graphics g){
 		Graphics2D g2d = (Graphics2D) g;
 		canvas_graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		stroke(canvas_graphics);
 		canvas(g2d);
 		cursor(g2d);
