@@ -1,5 +1,6 @@
 package com.chewychiyu.paint;
 
+import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -16,10 +17,23 @@ public class Storage{
 
 	private static File file = new File(DOWNLOADS + "paint_storage" + ".txt");
 	
-	public Storage(){
+	
+	
+	
+	public static void load_preferences(){
 		if(!file.exists()){
 			try{ file.createNewFile(); }catch(Exception e) { }
 		}
+		
+		for(int colorIndex = 0; colorIndex < Style.colors.length; colorIndex++){
+			Style.colors[colorIndex] = string_to_color(Style.default_color[colorIndex]);
+		}
+		
+	}
+	
+	public static Color string_to_color(String str){
+		String[] arr = str.split(" ");
+		return new Color(Integer.parseInt(arr[0]),Integer.parseInt(arr[1]),Integer.parseInt(arr[2]));
 	}
 	
 	public static String get(String key){

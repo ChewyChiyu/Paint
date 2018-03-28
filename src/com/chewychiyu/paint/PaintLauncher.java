@@ -23,7 +23,7 @@ public class PaintLauncher{
 	
 	
 	public static void main(String[] args){
-		new Storage(); //load storage from files
+		Storage.load_preferences(); //load storage from files
 		new PaintLauncher();
 	}
 	

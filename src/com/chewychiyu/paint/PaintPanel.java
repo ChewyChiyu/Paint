@@ -33,7 +33,7 @@ public class PaintPanel extends JPanel{
 			
             @Override
             public void mousePressed(MouseEvent e) {
-            		s = new Stroke(tool_bar.current_color, tool_bar.current_stroke);
+            		s = new Stroke(Style.colors[tool_bar.current_color_index], tool_bar.current_stroke);
             		s.add(e.getPoint());
             		strokes.add(s);
                 repaint();
@@ -45,6 +45,11 @@ public class PaintPanel extends JPanel{
                 repaint();
             }
             
+            @Override
+            public void mouseReleased(MouseEvent e){
+            		s.add(e.getPoint());
+            		repaint();
+            }
             
 		};
 		
