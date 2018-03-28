@@ -18,7 +18,6 @@ public class PaintPanel extends JPanel{
 	
 	private List<Stroke> strokes = new ArrayList<Stroke>();
 	
-	
 	public PaintPanel(){
 		panel();
 		brush();
