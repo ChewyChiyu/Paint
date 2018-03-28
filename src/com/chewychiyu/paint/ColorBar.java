@@ -46,7 +46,7 @@ public class ColorBar extends JPanel{
 	
 	public void panel(){
 		setPreferredSize(Style.color_bar_dim);
-		setBorder(Style.bevel_line_border);
+		setBorder(Style.color_bar_title);
 		setLayout(Style.color_bar_layout);
 	}
 	

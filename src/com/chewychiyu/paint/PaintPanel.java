@@ -14,13 +14,12 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class PaintPanel extends JPanel{
 	
-	private ToolBar tool_bar;
+	public ToolBar tool_bar;
 	
 	private List<Stroke> strokes = new ArrayList<Stroke>();
 	
 	
-	public PaintPanel(ToolBar tool_bar){
-		this.tool_bar = tool_bar;
+	public PaintPanel(){
 		panel();
 		brush();
 	}
@@ -32,22 +31,29 @@ public class PaintPanel extends JPanel{
 			
             @Override
             public void mousePressed(MouseEvent e) {
+            		if(tool_bar.current_tool.equals(Tool.BRUSH)){
             		s = new Stroke(Style.colors[tool_bar.current_color_index], tool_bar.current_stroke);
             		s.add(e.getPoint());
             		strokes.add(s);
+            		}
                 repaint();
             }
 
             @Override
             public void mouseDragged(MouseEvent e) {
+            		if(tool_bar.current_tool.equals(Tool.BRUSH)){
             		s.add(e.getPoint());
+            		}
                 repaint();
             }
             
             @Override
             public void mouseReleased(MouseEvent e){
+        			if(tool_bar.current_tool.equals(Tool.BRUSH)){
             		s.add(e.getPoint());
+        			}
             		repaint();
+            		
             }
             
 		};
@@ -59,6 +65,11 @@ public class PaintPanel extends JPanel{
 	public void panel(){
 		setPreferredSize(Style.paint_panel_dim);
 		setBackground(Color.WHITE);
+	}
+	
+	public void clear(){
+		strokes.clear();
+		repaint();
 	}
 	
 	@Override

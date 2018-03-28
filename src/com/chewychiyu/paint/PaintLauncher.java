@@ -11,9 +11,13 @@ public class PaintLauncher{
 		JPanel master_panel = new JPanel();
 		
 		PaintFrame frame = new PaintFrame();
+		
+		PaintPanel paint_panel = new PaintPanel();
 		ToolBar tool_bar = new ToolBar();
-		PaintPanel paint_panel = new PaintPanel(tool_bar);
 
+		paint_panel.tool_bar = tool_bar;
+		tool_bar.paint_panel = paint_panel;
+		
 		master_panel.add(tool_bar, BorderLayout.NORTH);
 		master_panel.add(paint_panel, BorderLayout.SOUTH);
 
