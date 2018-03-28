@@ -44,5 +44,6 @@ public class Style {
 	
 	public static final Color[] colors = new Color[10];
 	public static final String[] default_color = new String[]{"255 0 0","255 127 0","255 255 0","0 255 0","0 0 255","75 0 130","148 0 211","0 0 0","255 255 255","211 211 211"};
+	public static final Color WHITE = Color.WHITE;
 
 }
