@@ -18,7 +18,6 @@ public class ColorBar extends JPanel{
 	}
 	
 	public void addElements(){
-		
 		for(int colorIndex = 0; colorIndex < colors.length; colorIndex++){
 			colors[colorIndex] = new JButton(); 
 			colors[colorIndex].setUI(new MetalButtonUI());
@@ -37,9 +36,6 @@ public class ColorBar extends JPanel{
 		colors[7].addActionListener(e->{tool_bar.current_color_index = 7;});
 		colors[8].addActionListener(e->{tool_bar.current_color_index = 8;});
 		colors[9].addActionListener(e->{tool_bar.current_color_index = 9;});
-
-		
-		
 	}
 	
 	public void refresh(){

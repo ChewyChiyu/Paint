@@ -17,9 +17,6 @@ public class Storage{
 
 	private static File file = new File(DOWNLOADS + "paint_storage" + ".txt");
 	
-	
-	
-	
 	public static void load_preferences(){
 		if(!file.exists()){
 			try{ file.createNewFile(); }catch(Exception e) { }
@@ -28,7 +25,6 @@ public class Storage{
 		for(int colorIndex = 0; colorIndex < Style.colors.length; colorIndex++){
 			Style.colors[colorIndex] = string_to_color(Style.default_color[colorIndex]);
 		}
-		
 	}
 	
 	public static Color string_to_color(String str){

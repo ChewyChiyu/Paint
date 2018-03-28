@@ -18,8 +18,7 @@ public class ToolBar extends JPanel{
 		addElements();
 	}
 	
-	public void addElements(){
-		
+	public void addElements(){	
 		color_bar = new ColorBar(this);
 		color_changer = new ColorChanger(this);
 		

@@ -7,8 +7,7 @@ import javax.swing.JPanel;
 public class PaintLauncher{
 
 	
-	public PaintLauncher(){
-		
+	public PaintLauncher(){		
 		JPanel master_panel = new JPanel();
 		
 		PaintFrame frame = new PaintFrame();

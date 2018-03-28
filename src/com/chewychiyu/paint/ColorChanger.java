@@ -23,7 +23,6 @@ public class ColorChanger extends JPanel{
 	}
 
 	public void addElements(){
-
 		color_adjust = new JSlider(JSlider.VERTICAL,
 				MIN_VAL, MAX_VAL, initial_val);
 		color_adjust.addChangeListener(e -> {
@@ -53,13 +52,11 @@ public class ColorChanger extends JPanel{
 		}
 		
 		tool_bar.color_bar.refresh();
-		
 	}
 
 	public void panel(){
 		setPreferredSize(Style.color_changer_dim);
 		setBorder(Style.color_changer_title);
-
 	}
 
 }

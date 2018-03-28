@@ -25,8 +25,7 @@ public class PaintPanel extends JPanel{
 		brush();
 	}
 	
-	public void brush(){
-		
+	public void brush(){	
 		MouseAdapter mouse_adapter = new MouseAdapter(){
 			
 			Stroke s;
@@ -56,8 +55,7 @@ public class PaintPanel extends JPanel{
 		addMouseListener(mouse_adapter);
         addMouseMotionListener(mouse_adapter);
 	}
-	
-	
+		
 	public void panel(){
 		setPreferredSize(Style.paint_panel_dim);
 		setBackground(Color.WHITE);
@@ -68,8 +66,7 @@ public class PaintPanel extends JPanel{
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		stroke(g2d);
-		
+		stroke(g2d);	
 	}
 	
 	public void stroke(Graphics2D g2d){
