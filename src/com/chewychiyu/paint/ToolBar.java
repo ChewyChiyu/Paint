@@ -12,7 +12,8 @@ public class ToolBar extends JPanel{
 	public MiscBar misc_bar;
 	public BrushBar brush_bar;
 	public PaintPanel paint_panel;
-	
+	public FileBar file_bar;
+
 	public int current_color_index = 7; // black
 	public BasicStroke current_stroke = new BasicStroke(10,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND);
 	public Tool current_tool = Tool.BRUSH;
@@ -28,9 +29,11 @@ public class ToolBar extends JPanel{
 		color_changer = new ColorChanger(this);
 		brush_bar = new BrushBar(this);
 		misc_bar = new MiscBar(this);
+		file_bar = new FileBar(this);
 		add(color_bar);
 		add(color_changer);
 		add(brush_bar);
+		add(file_bar);
 		add(misc_bar);
 
 	}

@@ -18,7 +18,7 @@ public class PaintPanel extends JPanel{
 
 	private Point mouse = new Point();
 
-	private BufferedImage canvas = new BufferedImage(Style.paint_panel_dim.width,Style.paint_panel_dim.height,BufferedImage.TYPE_INT_RGB);
+	public BufferedImage canvas = new BufferedImage(Style.paint_panel_dim.width,Style.paint_panel_dim.height,BufferedImage.TYPE_INT_RGB);
 	private Graphics2D canvas_graphics = (Graphics2D) canvas.getGraphics();
 
 	public PaintPanel(){
@@ -92,6 +92,12 @@ public class PaintPanel extends JPanel{
 		repaint();
 	}
 
+	public void mask(BufferedImage image){
+		clear();
+		canvas = image;
+		canvas_graphics = (Graphics2D) canvas.getGraphics();
+	}
+	
 	@Override
 	public void paintComponent(Graphics g){
 		Graphics2D g2d = (Graphics2D) g;
@@ -100,6 +106,7 @@ public class PaintPanel extends JPanel{
 		stroke(canvas_graphics);
 		canvas(g2d);
 		cursor(g2d);
+		g2d.dispose();
 	}
 
 	public void render(Graphics2D g2d){

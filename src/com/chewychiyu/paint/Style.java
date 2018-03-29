@@ -23,6 +23,7 @@ public class Style {
     public static TitledBorder color_changer_title = new TitledBorder(bevel_line_border,"Hue",TitledBorder.CENTER,TitledBorder.TOP);
     public static TitledBorder misc_bar_title = new TitledBorder(bevel_line_border,"Misc",TitledBorder.CENTER,TitledBorder.TOP);
     public static TitledBorder brush_bar_title = new TitledBorder(bevel_line_border,"Brush",TitledBorder.CENTER,TitledBorder.TOP);
+    public static TitledBorder file_bar_title = new TitledBorder(bevel_line_border,"File",TitledBorder.CENTER,TitledBorder.TOP);
 
     public static Dimension app_dim = new Dimension(Toolkit.getDefaultToolkit().getScreenSize());
     public static Dimension tool_bar_dim = new Dimension(app_dim.width,app_dim.height/9);
@@ -33,10 +34,14 @@ public class Style {
 	public static Dimension misc_bar_dim = new Dimension(tool_bar_dim.width/20,(int)(tool_bar_dim.height*.85));
 	public static Dimension brush_bar_dim = new Dimension(tool_bar_dim.width/20,(int)(tool_bar_dim.height*.85));
 	public static Dimension brush_bar_slider_dim = new Dimension(brush_bar_dim.width,(int)(brush_bar_dim.height*0.8));
+	public static Dimension file_bar_dim = new Dimension(tool_bar_dim.width/20,(int)(tool_bar_dim.height*.85));
 
+	
+	
 	public static GridLayout color_bar_layout = new GridLayout(2,5);
 	public static FlowLayout tool_bar_layout = new FlowLayout(Style.FLOW_BUFFER);
 	public static GridLayout misc_bar_layout = new GridLayout(2,1);
+	public static GridLayout file_bar_layout = new GridLayout(2,1);
 
 	public static final int FLOW_BUFFER = 20;
 		
