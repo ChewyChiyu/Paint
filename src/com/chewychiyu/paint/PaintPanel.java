@@ -1,5 +1,6 @@
 package com.chewychiyu.paint;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -7,7 +8,7 @@ import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
+import java.util.LinkedList;
 
 import javax.swing.JPanel;
 @SuppressWarnings("serial")
@@ -36,7 +37,7 @@ public class PaintPanel extends JPanel{
 				case BRUSH:
 					stroke = new Stroke(Style.colors[tool_bar.current_color_index],tool_bar.current_stroke);
 					stroke.add(e.getPoint());
-					
+
 					break;
 				default:
 					break;
@@ -87,7 +88,7 @@ public class PaintPanel extends JPanel{
 		addMouseListener(mouse_adapter);
 		addMouseMotionListener(mouse_adapter);
 	}
-	
+
 	public void panel(){
 		setPreferredSize(Style.paint_panel_dim);
 	}
@@ -104,7 +105,7 @@ public class PaintPanel extends JPanel{
 		canvas = image;
 		canvas_graphics = (Graphics2D) canvas.getGraphics();
 	}
-	
+
 	@Override
 	public void paintComponent(Graphics g){
 		Graphics2D g2d = (Graphics2D) g;
@@ -119,9 +120,9 @@ public class PaintPanel extends JPanel{
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2d.setRenderingHint(RenderingHints.KEY_ALPHA_INTERPOLATION, RenderingHints.VALUE_ALPHA_INTERPOLATION_QUALITY);
 		g2d.setRenderingHint(RenderingHints.KEY_COLOR_RENDERING, RenderingHints.VALUE_COLOR_RENDER_QUALITY);
-	    g2d.setRenderingHint(RenderingHints.KEY_DITHERING, RenderingHints.VALUE_DITHER_ENABLE);
+		g2d.setRenderingHint(RenderingHints.KEY_DITHERING, RenderingHints.VALUE_DITHER_ENABLE);
 	}
-	
+
 	public void canvas(Graphics2D g2d){
 		g2d.drawImage(canvas,0,0,canvas.getWidth(),canvas.getHeight(),this);
 	}
@@ -151,8 +152,29 @@ public class PaintPanel extends JPanel{
 	}
 
 	public void bucketFill(Point mouse){
+		if(mouse.x < 0 || mouse.x > canvas.getWidth() || mouse.y < 0 || mouse.y > canvas.getHeight() ){ return; }
 		canvas_graphics.setColor(Style.colors[tool_bar.current_color_index]);
-		canvas_graphics.fillRect(mouse.x, mouse.y, 10, 10);
+		int seek = canvas.getRGB(mouse.x, mouse.y);
+		if(seek == Style.colors[tool_bar.current_color_index].getRGB()){ return; }
+		LinkedList<Point> pixels = new LinkedList<Point>();
+		pixels.addFirst(mouse);
+		while(!pixels.isEmpty()){
+			Point pixel = pixels.removeFirst();
+			if(canvas.getRGB(pixel.x, pixel.y) == seek){
+				canvas_graphics.fillRect(pixel.x, pixel.y, 1, 1);
+				if(pixel.x-1 > 0 && canvas.getRGB(pixel.x-1, pixel.y) == seek){
+					pixels.addLast(new Point(pixel.x-1,pixel.y));
+				}
+				if(pixel.y-1 > 0 && canvas.getRGB(pixel.x, pixel.y-1) == seek){
+					pixels.addLast(new Point(pixel.x,pixel.y-1));
+				}
+				if(pixel.x+1 < canvas.getWidth() && canvas.getRGB(pixel.x+1, pixel.y) == seek){
+					pixels.addLast(new Point(pixel.x+1,pixel.y));
+				}
+				if(pixel.y+1 < canvas.getHeight() && canvas.getRGB(pixel.x, pixel.y+1) == seek){
+					pixels.addLast(new Point(pixel.x,pixel.y+1));
+				}
+			}
+		}
 	}
-			
 }
