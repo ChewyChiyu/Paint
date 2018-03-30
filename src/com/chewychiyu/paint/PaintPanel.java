@@ -7,6 +7,7 @@ import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
 
 import javax.swing.JPanel;
 @SuppressWarnings("serial")
@@ -23,11 +24,11 @@ public class PaintPanel extends JPanel{
 
 	public PaintPanel(){
 		panel();
-		brush();
+		click();
 		clear();
 	}
 
-	public void brush(){	
+	public void click(){	
 		MouseAdapter mouse_adapter = new MouseAdapter(){
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -35,6 +36,7 @@ public class PaintPanel extends JPanel{
 				case BRUSH:
 					stroke = new Stroke(Style.colors[tool_bar.current_color_index],tool_bar.current_stroke);
 					stroke.add(e.getPoint());
+					
 					break;
 				default:
 					break;
@@ -51,6 +53,7 @@ public class PaintPanel extends JPanel{
 						stroke.truncate();
 					}
 					stroke.add(e.getPoint());
+					stroke(canvas_graphics);
 					break;
 				default:
 					break;
@@ -64,6 +67,10 @@ public class PaintPanel extends JPanel{
 				switch(tool_bar.current_tool){
 				case BRUSH:
 					stroke.add(e.getPoint());
+					stroke(canvas_graphics);
+					break;
+				case BUCKET:
+					bucketFill(e.getPoint());
 					break;
 				default:
 					break;
@@ -103,7 +110,6 @@ public class PaintPanel extends JPanel{
 		Graphics2D g2d = (Graphics2D) g;
 		render(g2d);
 		render(canvas_graphics);
-		stroke(canvas_graphics);
 		canvas(g2d);
 		cursor(g2d);
 		g2d.dispose();
@@ -143,4 +149,10 @@ public class PaintPanel extends JPanel{
 			g2d.drawLine(draw_from.x, draw_from.y, draw_to.x, draw_to.y);
 		}
 	}
+
+	public void bucketFill(Point mouse){
+		canvas_graphics.setColor(Style.colors[tool_bar.current_color_index]);
+		canvas_graphics.fillRect(mouse.x, mouse.y, 10, 10);
+	}
+			
 }
